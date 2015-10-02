@@ -12,7 +12,7 @@
 
 infix operator <|> { associativity left precedence 140 }
 
-public func <|><T>(lhs: Decoded<T>, rhs: Decoded<T>) -> Decoded<T> {
+public func <|> <T>(lhs: Decoded<T>, rhs: Decoded<T>) -> Decoded<T> {
   if case .Success = lhs {
     return lhs
   }
