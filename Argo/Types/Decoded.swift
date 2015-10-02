@@ -85,10 +85,6 @@ public extension Decoded {
   }
 }
 
-public func pure<T>(x: T) -> Decoded<T> {
-  return .Success(x)
-}
-
 public extension Decoded {
   func dematerialize() throws -> T {
     switch self {

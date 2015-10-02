@@ -13,3 +13,7 @@
 public func <*> <T, U>(f: Decoded<T -> U>, x: Decoded<T>) -> Decoded<U> {
   return x.apply(f)
 }
+
+public func pure<T>(x: T) -> Decoded<T> {
+  return .Success(x)
+}
