@@ -17,3 +17,12 @@ public func <*> <T, U>(f: Decoded<T -> U>, x: Decoded<T>) -> Decoded<U> {
 public func pure<T>(x: T) -> Decoded<T> {
   return .Success(x)
 }
+
+public extension Decoded {
+  func apply<U>(f: Decoded<T -> U>) -> Decoded<U> {
+    switch f {
+    case let .Success(function): return self.map(function)
+    case let .Failure(error): return .Failure(error)
+    }
+  }
+}

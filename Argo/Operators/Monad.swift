@@ -12,3 +12,12 @@
 public func >>- <T, U>(x: Decoded<T>, f: T -> Decoded<U>) -> Decoded<U> {
   return x.flatMap(f)
 }
+
+public extension Decoded {
+  func flatMap<U>(f: T -> Decoded<U>) -> Decoded<U> {
+    switch self {
+    case let .Success(value): return f(value)
+    case let .Failure(error): return .Failure(error)
+    }
+  }
+}

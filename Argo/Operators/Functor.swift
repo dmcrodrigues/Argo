@@ -12,3 +12,12 @@
 public func <^> <T, U>(f: T -> U, x: Decoded<T>) -> Decoded<U> {
   return x.map(f)
 }
+
+public extension Decoded {
+  func map<U>(f: T -> U) -> Decoded<U> {
+    switch self {
+    case let .Success(value): return .Success(f(value))
+    case let .Failure(error): return .Failure(error)
+    }
+  }
+}
